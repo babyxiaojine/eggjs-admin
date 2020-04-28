@@ -1,0 +1,7 @@
+{
+  "freezeTableName": true,
+  "underscored": true,
+  "timestamps": false,
+  "createdAt": "create_time",
+  "updatedAt": "update_time"
+}
