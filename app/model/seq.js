@@ -1,7 +1,7 @@
-/* jshint indent: 2 */
-
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tSeq', {
+'use strict';
+module.exports = app => {
+  const DataTypes = app.Sequelize;
+  return app.model.define('seq', {
     id: {
       type: DataTypes.STRING(32),
       allowNull: false,
@@ -50,6 +50,6 @@ module.exports = function(sequelize, DataTypes) {
       field: 'description'
     }
   }, {
-    tableName: 't_seq'
+    tableName: 'seq'
   });
 };

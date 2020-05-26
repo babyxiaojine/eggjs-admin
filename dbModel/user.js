@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tUser', {
+  return sequelize.define('user', {
     id: {
       type: DataTypes.STRING(64),
       allowNull: false,
@@ -113,6 +113,6 @@ module.exports = function(sequelize, DataTypes) {
       field: 'shop_owner'
     }
   }, {
-    tableName: 't_user'
+    tableName: 'user'
   });
 };

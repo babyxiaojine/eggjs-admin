@@ -48,6 +48,7 @@ module.exports = appInfo => {
   };
   config.jwt = {
     secret: '113322',
+    expiresIn: '1h',
   };
   config.sequelize = {
     dialect: 'mysql',
@@ -56,12 +57,16 @@ module.exports = appInfo => {
     database: 'ips',
     username: 'root',
     password: '',
+    timezone: '+08:00',
     define: {
       freezeTableName: true,
       underscored: true,
-      timestamps: false,
-      createdAt: 'create_time',
-      updatedAt: 'update_time',
+      timestamps: true,
+      createdAt: 'createTime',
+      updatedAt: 'updateTime',
+    },
+    query: {
+      // raw: true,
     },
   };
   // add your user config here

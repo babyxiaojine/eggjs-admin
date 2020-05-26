@@ -1,22 +1,24 @@
-/* jshint indent: 2 */
-
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tUserRole', {
+'use strict';
+module.exports = app => {
+  const DataTypes = app.Sequelize;
+  return app.model.define('shop', {
     id: {
       type: DataTypes.STRING(32),
       allowNull: false,
       primaryKey: true,
       field: 'id'
     },
-    userId: {
-      type: DataTypes.STRING(32),
+    shopName: {
+      type: DataTypes.STRING(64),
       allowNull: false,
-      field: 'user_id'
+      field: 'shop_name'
     },
-    roleId: {
-      type: DataTypes.STRING(32),
+    shopCode: {
+      type: DataTypes.INTEGER(64),
       allowNull: false,
-      field: 'role_id'
+      autoIncrement: true,
+      unique: true,
+      field: 'shop_code'
     },
     createTime: {
       type: DataTypes.DATE,
@@ -37,8 +39,13 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(32),
       allowNull: false,
       field: 'update_by'
+    },
+    enableFlag: {
+      type: DataTypes.STRING(1),
+      allowNull: false,
+      field: 'enable_flag'
     }
   }, {
-    tableName: 't_user_role'
+    tableName: 'shop'
   });
 };

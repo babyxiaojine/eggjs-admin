@@ -1,28 +1,34 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tInterfaceConf', {
+  return sequelize.define('shop', {
     id: {
       type: DataTypes.STRING(32),
       allowNull: false,
       primaryKey: true,
       field: 'id'
     },
-    name: {
-      type: DataTypes.STRING(32),
+    shopName: {
+      type: DataTypes.STRING(64),
       allowNull: false,
+      field: 'shop_name'
+    },
+    shopCode: {
+      type: DataTypes.INTEGER(64),
+      allowNull: false,
+      autoIncrement: true,
       unique: true,
-      field: 'name'
+      field: 'shop_code'
     },
-    url: {
-      type: DataTypes.STRING(256),
+    createTime: {
+      type: DataTypes.DATE,
       allowNull: false,
-      field: 'url'
+      field: 'create_time'
     },
-    description: {
-      type: DataTypes.STRING(256),
+    updateTime: {
+      type: DataTypes.DATE,
       allowNull: false,
-      field: 'description'
+      field: 'update_time'
     },
     createBy: {
       type: DataTypes.STRING(32),
@@ -34,17 +40,12 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       field: 'update_by'
     },
-    createTime: {
-      type: DataTypes.DATE,
+    enableFlag: {
+      type: DataTypes.STRING(1),
       allowNull: false,
-      field: 'create_time'
-    },
-    updateTime: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      field: 'update_time'
+      field: 'enable_flag'
     }
   }, {
-    tableName: 't_interface_conf'
+    tableName: 'shop'
   });
 };

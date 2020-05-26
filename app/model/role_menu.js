@@ -1,32 +1,27 @@
-/* jshint indent: 2 */
-
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tRole', {
+'use strict';
+module.exports = app => {
+  const DataTypes = app.Sequelize;
+  return app.model.define('roleMenu', {
     id: {
       type: DataTypes.STRING(32),
       allowNull: false,
       primaryKey: true,
       field: 'id'
     },
-    name: {
-      type: DataTypes.STRING(64),
+    roleId: {
+      type: DataTypes.STRING(32),
       allowNull: false,
-      field: 'name'
+      field: 'role_id'
     },
-    ename: {
-      type: DataTypes.STRING(64),
+    menuId: {
+      type: DataTypes.STRING(32),
       allowNull: false,
-      field: 'ename'
+      field: 'menu_id'
     },
     createTime: {
       type: DataTypes.DATE,
       allowNull: false,
       field: 'create_time'
-    },
-    roleType: {
-      type: DataTypes.STRING(255),
-      allowNull: true,
-      field: 'role_type'
     },
     updateTime: {
       type: DataTypes.DATE,
@@ -35,15 +30,15 @@ module.exports = function(sequelize, DataTypes) {
     },
     createBy: {
       type: DataTypes.STRING(32),
-      allowNull: false,
+      allowNull: true,
       field: 'create_by'
     },
     updateBy: {
       type: DataTypes.STRING(32),
-      allowNull: false,
+      allowNull: true,
       field: 'update_by'
     }
   }, {
-    tableName: 't_role'
+    tableName: 'role_menu'
   });
 };

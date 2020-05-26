@@ -2,7 +2,7 @@
 module.exports = app => {
   const DataTypes = app.Sequelize;
   return app.model.define(
-    'tUser',
+    'user',
     {
       id: {
         type: DataTypes.STRING(64),
@@ -116,7 +116,7 @@ module.exports = app => {
       },
     },
     {
-      tableName: 't_user',
+      tableName: 'user',
     }
   );
 };

@@ -1,22 +1,27 @@
-/* jshint indent: 2 */
-
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tReceiveSale', {
+'use strict';
+module.exports = app => {
+  const DataTypes = app.Sequelize;
+  return app.model.define('receiveList', {
     id: {
-      type: DataTypes.STRING(64),
+      type: DataTypes.STRING(32),
       allowNull: false,
       primaryKey: true,
       field: 'id'
     },
-    shopId: {
-      type: DataTypes.STRING(64),
-      allowNull: false,
-      field: 'shop_id'
-    },
     activityId: {
-      type: DataTypes.STRING(64),
+      type: DataTypes.STRING(32),
       allowNull: false,
       field: 'activity_id'
+    },
+    orderCode: {
+      type: DataTypes.STRING(64),
+      allowNull: false,
+      field: 'order_code'
+    },
+    sku: {
+      type: DataTypes.STRING(64),
+      allowNull: false,
+      field: 'sku'
     },
     productName: {
       type: DataTypes.STRING(64),
@@ -28,24 +33,9 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       field: 'apply_qty'
     },
-    saleQty: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      field: 'sale_qty'
-    },
-    differentQty: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      field: 'different_qty'
-    },
-    sku: {
-      type: DataTypes.STRING(64),
-      allowNull: false,
-      field: 'sku'
-    },
     createBy: {
       type: DataTypes.STRING(64),
-      allowNull: true,
+      allowNull: false,
       field: 'create_by'
     },
     createTime: {
@@ -55,7 +45,7 @@ module.exports = function(sequelize, DataTypes) {
     },
     updateBy: {
       type: DataTypes.STRING(64),
-      allowNull: true,
+      allowNull: false,
       field: 'update_by'
     },
     updateTime: {
@@ -64,6 +54,6 @@ module.exports = function(sequelize, DataTypes) {
       field: 'update_time'
     }
   }, {
-    tableName: 't_receive_sale'
+    tableName: 'receive_list'
   });
 };

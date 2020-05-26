@@ -1,7 +1,7 @@
-/* jshint indent: 2 */
-
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tMenu', {
+'use strict';
+module.exports = app => {
+  const DataTypes = app.Sequelize;
+  return app.model.define('menu', {
     id: {
       type: DataTypes.STRING(32),
       allowNull: false,
@@ -21,6 +21,7 @@ module.exports = function(sequelize, DataTypes) {
     parentId: {
       type: DataTypes.STRING(32),
       allowNull: true,
+      defaultValue: '0',
       field: 'parent_id'
     },
     sort: {
@@ -70,6 +71,6 @@ module.exports = function(sequelize, DataTypes) {
       field: 'update_by'
     }
   }, {
-    tableName: 't_menu'
+    tableName: 'menu',
   });
 };

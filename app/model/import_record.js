@@ -1,7 +1,7 @@
-/* jshint indent: 2 */
-
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tImportRecord', {
+'use strict';
+module.exports = app => {
+  const DataTypes = app.Sequelize;
+  return app.model.define('importRecord', {
     id: {
       type: DataTypes.STRING(64),
       allowNull: false,
@@ -44,6 +44,6 @@ module.exports = function(sequelize, DataTypes) {
       field: 'update_time'
     }
   }, {
-    tableName: 't_import_record'
+    tableName: 'import_record'
   });
 };

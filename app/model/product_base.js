@@ -1,38 +1,37 @@
-/* jshint indent: 2 */
-
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tSaleActivity', {
+'use strict';
+module.exports = app => {
+  const DataTypes = app.Sequelize;
+  return app.model.define('productBase', {
     id: {
       type: DataTypes.STRING(32),
       allowNull: false,
       primaryKey: true,
       field: 'id'
     },
-    activityName: {
-      type: DataTypes.STRING(64),
-      allowNull: false,
-      field: 'activity_name'
-    },
     shopId: {
       type: DataTypes.STRING(32),
       allowNull: false,
       field: 'shop_id'
     },
-    activityStatus: {
-      type: DataTypes.INTEGER(2),
+    barcode: {
+      type: DataTypes.STRING(64),
       allowNull: false,
-      defaultValue: '0',
-      field: 'activity_status'
+      field: 'barcode'
     },
-    createBy: {
-      type: DataTypes.STRING(32),
+    sku: {
+      type: DataTypes.STRING(64),
       allowNull: false,
-      field: 'create_by'
+      field: 'sku'
     },
-    updateBy: {
-      type: DataTypes.STRING(32),
+    price: {
+      type: DataTypes.DECIMAL,
       allowNull: false,
-      field: 'update_by'
+      field: 'price'
+    },
+    productName: {
+      type: DataTypes.STRING(64),
+      allowNull: false,
+      field: 'product_name'
     },
     createTime: {
       type: DataTypes.DATE,
@@ -44,17 +43,22 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: false,
       field: 'update_time'
     },
+    createBy: {
+      type: DataTypes.STRING(64),
+      allowNull: false,
+      field: 'create_by'
+    },
     createByName: {
       type: DataTypes.STRING(64),
       allowNull: false,
       field: 'create_by_name'
     },
-    receiveListName: {
+    updateBy: {
       type: DataTypes.STRING(64),
       allowNull: false,
-      field: 'receive_list_name'
+      field: 'update_by'
     }
   }, {
-    tableName: 't_sale_activity'
+    tableName: 'product_base'
   });
 };

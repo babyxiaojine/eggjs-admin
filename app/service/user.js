@@ -4,9 +4,11 @@ const Service = require('egg').Service;
 const crypto = require('crypto');
 
 class UserService extends Service {
-
   async find(userData) {
-    const user = await this.app.mysql.get('t_user', userData);
+    const user = await this.ctx.model.User.findOne({
+      where: userData,
+      raw: true,
+    });
     return user;
   }
   async login(userData) {
@@ -18,32 +20,38 @@ class UserService extends Service {
     return user;
   }
   async getUserAll(userData) {
-    const mysql = this.app.mysql;
+    const {model} = this.ctx;
     const user = await this.find(userData);
-    const roles = await mysql.select('t_user_role', { 
-      where: { user_id: user.id },
+    const roles = await model.UserRole.findAll({ 
+      attributes: ['id','userId','roleId'],
+      where: {userId: user.id},
+      raw: true,
     });
     let userMenus = {};
-    const isAdmin = roles.find(item => item.role_id === '6ce321acdb88416ca81f2942a0f96a93');
+    const isAdmin = roles.find(item => item.roleId === '6ce321acdb88416ca81f2942a0f96a93');
     if (isAdmin) {
-      userMenus = await mysql.select('t_menu');
+      userMenus = await model.Menu.findAll({ raw: true });
     } else {
-      const roleIdList = roles.map(item => item.role_id);
+      const roleIdList = roles.map(item => item.roleId);
       const roleMenus = await mysql.select('t_role_menu', { 
-        where: { role_id: roleIdList },
+        where: { roleId: roleIdList },
+        raw: true,
       });
       const roleMenusList = roleMenus.reduce((preVal, item) => {
-        if (preVal.indexOf(item.menu_id) < 0) {
-          preVal.push(item.menu_id);
+        if (preVal.indexOf(item.menuId) < 0) {
+          preVal.push(item.menuId);
         }
         return preVal;
       }, []);
       userMenus = await mysql.select('t_menu', { 
         where: { id: roleMenusList },
+        raw: true,
       });
     }
 
     const treeMenus = this.ctx.service.sys.doTreeMenu(userMenus);
+
+    const shops = await model.Shop.findAll({ raw: true });
     const userAll = {
       menus: treeMenus,
       authorities: [],
@@ -53,7 +61,7 @@ class UserService extends Service {
       mobile: user.mobile,
       name: user.name,
       shopId: '',
-      shops: [],
+      shops,
       userType: '1',
     };
     return userAll;

@@ -21,7 +21,7 @@ module.exports = (option, app) => {
           const jwtBody = await app.jwt.verify(token, app.config.jwt.secret);
           ctx.request.header.userBody = {
             id: jwtBody.id,
-            login_name: jwtBody.login_name,
+            loginName: jwtBody.loginName,
           };
           await next();
           const body = ctx.body;

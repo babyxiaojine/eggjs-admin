@@ -2,8 +2,7 @@
 const child_process = require('child_process');
 const { exec } = child_process;
 const modelName = process.argv[2];
-console.log(modelName);
-
+console.log(`Start build table for "${modelName || 'all'}" now!`)
 const database = {
   // [required] * 数据库地址
   host: 'localhost',
@@ -54,5 +53,4 @@ exec(connectShell, (err, stdout, stderr) => {
   if (err) {
     console.log(`exec error: ${err}`);
   }
-
 });

@@ -1,7 +1,7 @@
-/* jshint indent: 2 */
-
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('tOrder', {
+'use strict';
+module.exports = app => {
+  const DataTypes = app.Sequelize;
+  return app.model.define('order', {
     id: {
       type: DataTypes.STRING(32),
       allowNull: false,
@@ -84,6 +84,6 @@ module.exports = function(sequelize, DataTypes) {
       field: 'update_by'
     }
   }, {
-    tableName: 't_order'
+    tableName: 'order'
   });
 };
