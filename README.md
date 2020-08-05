@@ -1,5 +1,11 @@
 # eggjs-admin
-基于EGGJS的后台接口，使用sequelize搭建数据库模型，jwt权限拦截。前后端分离，前端还在搭建中。
+基于EGGJS的后台接口，使用sequelize搭建数据库模型，jwt授权。  
+已开发模块：
+1. 角色管理
+2. 菜单管理
+3. 用户管理
+4. 店铺管理
+前后端分离，前端使用VUE搭建[git地址](https://github.com/babyxiaojine/eggjs-vue-admin)。
 
 ## QuickStart
 
