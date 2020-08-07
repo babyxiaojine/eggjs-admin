@@ -7,15 +7,18 @@
     "declarations": true
   },
   "dependencies": {
+    "await-stream-ready": "^1.0.1",
     "egg": "^2.15.1",
     "egg-cors": "^2.2.3",
     "egg-jwt": "^3.1.7",
     "egg-mysql": "^3.0.0",
     "egg-scripts": "^2.11.0",
     "egg-sequelize": "^5.2.1",
+    "lodash": "^4.17.19",
     "moment": "^2.24.0",
     "mysql2": "^2.1.0",
     "save": "^2.4.0",
+    "stream-wormhole": "^1.1.0",
     "vue": "^2.6.10",
     "vue-server-renderer": "^2.6.10"
   },

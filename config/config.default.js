@@ -48,7 +48,7 @@ module.exports = appInfo => {
   };
   config.jwt = {
     secret: '113322',
-    expiresIn: '1h',
+    expiresIn: '12h',
   };
   config.sequelize = {
     dialect: 'mysql',

@@ -3,9 +3,10 @@ module.exports = app => {
   const DataTypes = app.Sequelize;
   return app.model.define('menu', {
     id: {
-      type: DataTypes.STRING(32),
+      type: DataTypes.BIGINT,
       allowNull: false,
       primaryKey: true,
+      autoIncrement: true,
       field: 'id'
     },
     name: {
@@ -13,14 +14,20 @@ module.exports = app => {
       allowNull: false,
       field: 'name'
     },
+    nameEn: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+      field: 'name_en'
+    },
     href: {
       type: DataTypes.STRING(256),
       allowNull: true,
       field: 'href'
     },
-    href_alias: {
+    hrefAlias: {
       type: DataTypes.STRING(255),
       allowNull: true,
+      defaultValue: '',
       field: 'href_alias'
     },
     parentId: {
@@ -61,7 +68,7 @@ module.exports = app => {
     },
     menuType: {
       type: DataTypes.STRING(10),
-      allowNull: false,
+      allowNull: true,
       defaultValue: '0',
       field: 'menu_type'
     },
@@ -74,8 +81,18 @@ module.exports = app => {
       type: DataTypes.STRING(32),
       allowNull: false,
       field: 'update_by'
+    },
+    extend: {
+      type: DataTypes.STRING(255),
+      allowNull: true,
+      field: 'extend'
+    },
+    more: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      field: 'more'
     }
   }, {
-    tableName: 'menu',
+    tableName: 'cate'
   });
 };

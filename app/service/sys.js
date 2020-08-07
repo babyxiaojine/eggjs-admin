@@ -242,10 +242,12 @@ class SysService extends Service {
     const res = await model.Shop.findAll();
     return res;
   }
-
+  // 菜单menu 
   async selectAllMenu() {
     const { model } = this.ctx;
-    const allMenus = await model.Menu.findAll();
+    const allMenus = await model.Menu.findAll({
+      raw: true
+    });
     const treeMenus = this.doTreeMenu(allMenus);
     return treeMenus;
   }
@@ -267,11 +269,49 @@ class SysService extends Service {
   async findMenuById(data) {
     const { model } = this.ctx;
     const menu = await model.Menu.findOne({
-      id: data.id,
+      where:{
+        id: data.id,
+      },
+      raw: true
     });
     return menu;
   }
+  // 菜单menu 
+  async selectAllCate() {
+    const { model } = this.ctx;
+    const allCates = await model.Cate.findAll({
+      raw: true
+    });
+    const treeCates = this.doTreeMenu(allCates);
+    return treeCates;
+  }
 
+  async updateCate(data) {
+    const { model } = this.ctx;
+    const cate = await model.Cate.update(data,{
+      where: { id: data.id },
+    });
+    return cate;
+  }
+
+  async addCate(data) {
+    const { model } = this.ctx;
+    const cate = await model.Cate.create(data);
+    return cate;
+  }
+
+  async findCateById(data) {
+    const { model } = this.ctx;
+    const cate = await model.Cate.findOne({
+      where:{
+        id: data.id,
+      },
+      raw: true
+    });
+    return cate;
+  }
+
+  // 格式化菜单
   doTreeMenu(menus) {
     const treeData = [];
     const map = {};
